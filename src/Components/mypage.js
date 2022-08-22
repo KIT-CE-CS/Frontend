@@ -113,6 +113,8 @@ function MyInfoPage(){
                 })
                 .catch((e) => {
                     console.log(e);
+                    if (e.response.data.message == "Wrong Password")
+                        alert("비밀번호가 맞지 않습니다.")
                 })
         }else{
             console.log("취소");
