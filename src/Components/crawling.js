@@ -2,29 +2,18 @@ import React, { useEffect, useState } from "react";
 import './crawling.css';
 import axios from "axios";
 
-const testlist = [{
-    no: 1,
-    tag: "CE",
-    title : "test1"
-},
-    {
-        no: 2,
-        tag: "SE",
-        title : "test2",
-    },
-    {
-        no: 3,
-        tag: "AI",
-        title : "test3",
-    }
-]
-
 function Crawling() {
-    const [list, setList] = useState([]);
+    const [CE, setCE] = useState([]);
+    const [SE, setSE] = useState([]);
+    const [AI, setAI] = useState([]);
+
     useEffect(() => {
-        axios.get("/")
+        axios.get("/crawler")
             .then((res) => {
-                setList(res.data);
+                console.log(res.data)
+                setCE(res.data.ce);
+                setSE(res.data.cs);
+                setAI(res.data.ai);
             })
             .catch((err) => {
                 console.log(err);
@@ -54,14 +43,14 @@ function Crawling() {
                         </thead>
                         <tbody>
                         {
-                            testlist.map((i) => {
-                                let goView = (e) => {
-                                    window.open("http://www.naver.com", '_blank').focus();
+                            CE.map((i) => {
+                                let goView = (link) => {
+                                    window.open(link, '_blank').focus();
                                 }
                                 return (
                                     <>
-                                        <tr onClick={goView}>
-                                            <td>{i.tag}</td>
+                                        <tr onClick={() => {goView(i.link)}}>
+                                            <td>CE</td>
                                             <td>{i.title}</td>
                                         </tr>
                                     </>
@@ -82,14 +71,14 @@ function Crawling() {
                         </thead>
                         <tbody>
                         {
-                            testlist.map((i) => {
-                                let goView = (e) => {
-                                    window.open("http://www.naver.com", '_blank').focus();
+                            AI.map((i) => {
+                                let goView = (link) => {
+                                    window.open(link, '_blank').focus();
                                 }
                                 return (
                                     <>
-                                        <tr onClick={goView}>
-                                            <td>{i.tag}</td>
+                                        <tr onClick={() => {goView(i.link)}}>
+                                            <td>AI</td>
                                             <td>{i.title}</td>
                                         </tr>
                                     </>
@@ -110,14 +99,14 @@ function Crawling() {
                         </thead>
                         <tbody>
                         {
-                            testlist.map((i) => {
-                                let goView = (e) => {
-                                    window.open("http://www.naver.com", '_blank').focus();
+                            CE.map((i) => {
+                                let goView = (link) => {
+                                    window.open(link, '_blank').focus();
                                 }
                                 return (
                                     <>
-                                        <tr onClick={goView}>
-                                            <td>{i.tag}</td>
+                                        <tr onClick={() => {goView(i.link)}}>
+                                            <td>CE</td>
                                             <td>{i.title}</td>
                                         </tr>
                                     </>
@@ -138,14 +127,14 @@ function Crawling() {
                         </thead>
                         <tbody>
                         {
-                            testlist.map((i) => {
-                                let goView = (e) => {
-                                    window.open("http://www.naver.com", '_blank').focus();
+                            SE.map((i) => {
+                                let goView = (link) => {
+                                    window.open(link, '_blank').focus();
                                 }
                                 return (
                                     <>
-                                        <tr onClick={goView}>
-                                            <td>{i.tag}</td>
+                                        <tr onClick={() => {goView(i.link)}}>
+                                            <td>SE</td>
                                             <td>{i.title}</td>
                                         </tr>
                                     </>
